@@ -1,12 +1,16 @@
 package main
 
 import (
+	"draftgoal-backend/internal/config"
 	"fmt"
 	"log"
 	"net/http"
 )
 
 func main() {
+
+	//Conecta com o banco de dados
+	config.ConnectDatabase()
 
 	http.HandleFunc("/health", func(w http.ResponseWriter, r *http.Request) {
 		_, _ = fmt.Fprintf(w, "DraftGoal is running!")
