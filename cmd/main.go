@@ -9,6 +9,9 @@ import (
 
 func main() {
 
+	//caregando o arquivo .env
+	config.LoadEnv()
+
 	//Conecta com o banco de dados
 	config.ConnectDatabase()
 
