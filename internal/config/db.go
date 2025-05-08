@@ -5,18 +5,17 @@ import (
 	"gorm.io/driver/postgres"
 	"gorm.io/gorm"
 	"log"
-	"os"
 )
 
 var DB *gorm.DB
 
 func ConnectDatabase() {
-	dbHost := os.Getenv("DB_HOST")
-	dbPort := os.Getenv("DB_PORT")
-	dbUser := os.Getenv("POSTGRES_USER")
-	dbPassword := os.Getenv("POSTGRES_PASSWORD")
-	dbName := os.Getenv("POSTGRES_DB")
-	sslMode := os.Getenv("DB_SSLMODE")
+	dbHost := GetEnv("DB_HOST", "localhost")
+	dbPort := GetEnv("DB_PORT", "5432")
+	dbUser := GetEnv("POSTGRES_USER", "postgres")
+	dbPassword := GetEnv("POSTGRES_PASSWORD", "postgres")
+	dbName := GetEnv("POSTGRES_DB", "draftgoal")
+	sslMode := GetEnv("DB_SSLMODE", "disable")
 
 	//DSN = Data Source Name → string de conexão no formato esperado pelo driver do PostgreSQL + GORM
 	dataSourceName := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s",

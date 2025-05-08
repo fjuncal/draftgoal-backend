@@ -16,8 +16,13 @@ func LoadEnv() {
 // GetEnv Funcao que retorna o valor de uma variavel de ambiente ou um fallback
 func GetEnv(key string, fallback string) string {
 	val := os.Getenv(key)
+	if val == "" && fallback == "" {
+		log.Fatalf("❌ Variável de ambiente %s não está definida e sem fallback", key)
+	}
+
 	if val == "" {
 		return fallback
 	}
+
 	return val
 }
