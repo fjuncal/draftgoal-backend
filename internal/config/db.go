@@ -9,7 +9,7 @@ import (
 
 var DB *gorm.DB
 
-func ConnectDatabase() {
+func ConnectDatabase() *gorm.DB {
 	dbHost := GetEnv("DB_HOST", "localhost")
 	dbPort := GetEnv("DB_PORT", "5432")
 	dbUser := GetEnv("POSTGRES_USER", "postgres")
@@ -29,4 +29,6 @@ func ConnectDatabase() {
 
 	DB = database
 	fmt.Println("✅ Banco de dados conectado com sucesso")
+
+	return DB
 }
